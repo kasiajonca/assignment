@@ -9,6 +9,12 @@ import javax.validation.constraints.Min;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Class describing collection stored in database. Each collection is defined
+ * for a country defined by the locale and will have different name based on the
+ * locale. There will be possibly many collections for a given id corresponding
+ * to various languages.
+ */
 @Data
 @Table
 public class Collection {
@@ -16,7 +22,6 @@ public class Collection {
     @ApiModelProperty(notes = "The database generated collection id")
     private Long id;
     private String collectionName;
-    @Min(value = 3, message = "String should not be less than 3")
     private String locale;
     private Set<ProductRef> productRefs = new HashSet<>();
 

@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Rest services for collection.
+ */
 @Slf4j
 @RestController
 @RequestMapping("/product")
@@ -28,6 +31,10 @@ public class CollectionController {
         this.collectionService = service;
     }
 
+    /**
+     * Endpoint to list all collections.
+     * @return list of collections
+     */
     @ApiOperation(value = "View a list of available collections")
     @RequestMapping(method = RequestMethod.GET, value = "/collection", produces = "application/json")
     public ResponseEntity<Iterable<CollectionDetailDto>> listCollections() {
@@ -35,6 +42,12 @@ public class CollectionController {
         return new ResponseEntity<>(collections, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint to list all collections with a given id. For one id there could be several
+     * collections depending on how many languages are officially used.
+     * @param collectionId - of the collection
+     * @return - list of collections
+     */
     @ApiOperation(value = "Find collection with given id", response = List.class)
     @RequestMapping(method = RequestMethod.GET, value = "/collection/{id}", produces = "application/json")
     public ResponseEntity<List<CollectionDetailDto>> findCollection(@PathVariable("id") Long collectionId) {
@@ -42,6 +55,12 @@ public class CollectionController {
         return new ResponseEntity<>(collections, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint to find a collection for a given id and locale
+     * @param collectionId of the collection
+     * @param locale of the  collection determined by country and language
+     * @return collection
+     */
     @ApiOperation(value = "Find collection with given id and locale", response = CollectionDetailDto.class)
     @RequestMapping(method = RequestMethod.GET, value = "/collection/{id}/{locale}", produces = "application/json")
     public ResponseEntity<CollectionDetailDto> findCollection(@PathVariable("id") Long collectionId,
@@ -50,6 +69,11 @@ public class CollectionController {
         return new ResponseEntity<>(collection, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint used to create a new collection
+     * @param collectionDto with details of the collection
+     * @return message about the created collection
+     */
     @ApiOperation(value = "Create collection", response = String.class)
     @RequestMapping(method = RequestMethod.POST, value = "/collection")
     public ResponseEntity<String> createCollection(@RequestBody CollectionDto collectionDto) {
@@ -58,6 +82,13 @@ public class CollectionController {
                 + " and locale: " + createdCollection.getLocale(), HttpStatus.OK);
     }
 
+    /**
+     * Endpoint to delete a collection given its id. There could be more than
+     * one collection with the given id depending on in how many languages it
+     * exists.
+     * @param collectionId of the collection
+     * @return boolean to indicate if the delete succeeded
+     */
     @ApiOperation(value = "Delete collection(s) with given id", response = Boolean.class)
     @RequestMapping(method = RequestMethod.DELETE, value = "/collection/{id}")
     public ResponseEntity<Boolean> deleteCollection(@PathVariable("id") Long collectionId) {
@@ -65,6 +96,11 @@ public class CollectionController {
         return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
     }
 
+    /**
+     * Endpoint to update existing collection.
+     * @param collection object to specify updated collection.
+     * @return updated collection
+     */
     @ApiOperation(value = "Update collection with given id", response = Collection.class)
     @RequestMapping(method = RequestMethod.PUT, value = "/collection")
     public ResponseEntity<Collection> updateCollection(@RequestBody Collection collection) {

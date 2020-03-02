@@ -6,6 +6,10 @@ import lombok.Getter;
 
 import java.util.Set;
 
+/**
+ * Dto used to expose collection data to clients. This includes
+ * product data dtos with all info.
+ */
 @Getter
 @AllArgsConstructor
 public class CollectionDetailDto {

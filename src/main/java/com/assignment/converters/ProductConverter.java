@@ -22,6 +22,13 @@ public class ProductConverter {
         this.contentRepository = contentRepository;
     }
 
+    /**
+     * Convert from product to product dto. The product dto includes
+     * content of the product obtained from database.
+     * @param product to be converted
+     * @param locale locale of the product to be converted
+     * @return converted product dto
+     */
     public ProductDto convertToProductDto(Product product, String locale) {
         Optional<Content> contentOpt = contentRepository.findByProductIdAndLocale(product.getId(), locale);
         String content = "Content for this language does not exist.";

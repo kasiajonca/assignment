@@ -6,6 +6,9 @@ import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
+/**
+ * Class that will be used to wrap exception into a format readable to clients.
+ */
 @Data
 public class ApiError {
     private HttpStatus status;

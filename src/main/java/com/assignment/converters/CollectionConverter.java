@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-
 /**
  * Class that converts database model for collection into dto presented
  * to the client of rest services. Because Spring Data JDBC does not do much
@@ -33,6 +32,11 @@ public class CollectionConverter {
         this.productConverter = productConverter;
     }
 
+    /**
+     * Convert from List of collections to List of collections detail dto.
+     * @param collections to be converted
+     * @return list of converted collections
+     */
     public List<CollectionDetailDto> convertToListOfCollectionDetailDto(List<Collection> collections) {
         return collections
                 .stream()
@@ -40,6 +44,11 @@ public class CollectionConverter {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Convert from collection to collection detail dto
+     * @param collection to be converted
+     * @return converted collection
+     */
     public CollectionDetailDto convertToCollectionDetailDto(Collection collection) {
         CollectionDetailDto collectionDetailDto = new CollectionDetailDto(collection.getId(),
                 CountryAndLanguage.getFromLocale(collection.getLocale()),

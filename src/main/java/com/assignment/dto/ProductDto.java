@@ -3,6 +3,9 @@ package com.assignment.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * Product dto with info about its content
+ */
 @Data
 @AllArgsConstructor
 public class ProductDto {
