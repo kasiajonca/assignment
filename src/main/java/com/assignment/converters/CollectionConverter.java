@@ -55,12 +55,13 @@ public class CollectionConverter {
                 collection.getCollectionName(), new HashSet<>());
         for (ProductRef productRef : collection.getProductRefs()) {
             Optional<Product> product = productRepository.findById(productRef.getProductId());
-            product
-                    .ifPresentOrElse(x -> collectionDetailDto.getProducts()
-                                    .add(productConverter.convertToProductDto(product.get(), collection.getLocale())),
-                            () -> {throw new EntityNotFoundException("Product with id: " + productRef.getProductId() + " not found");});
-        }
+            if (product.isPresent()) {
+                collectionDetailDto.getProducts()
+                        .add(productConverter.convertToProductDto(product.get(), collection.getLocale()));
+            } else {
+                throw new EntityNotFoundException("Product with id: " + productRef.getProductId() + " not found");
+            }
+         }
         return collectionDetailDto;
     }
-
 }

@@ -73,9 +73,12 @@ public class CollectionService {
     }
 
     public CollectionDetailDto findCollectionByIdAndLocale(Long collectionId, String locale) {
-    Optional<Collection> collectionOpt = collectionRepository.findByCollectionIdAndLocale(collectionId, locale);
-        return collectionConverter.convertToCollectionDetailDto(
-                collectionOpt.orElseThrow(() -> {throw new EntityNotFoundException(
-                        String.format("Collection with id: %d and locale: %s not found.", collectionId, locale));}));
+        Optional<Collection> collectionOpt = collectionRepository.findByCollectionIdAndLocale(collectionId, locale);
+        if (collectionOpt.isPresent()) {
+            return collectionConverter.convertToCollectionDetailDto(
+                    collectionOpt.get());
+        }
+        throw new EntityNotFoundException(
+                String.format("Collection with id: %d and locale: %s not found.", collectionId, locale));
     }
 }

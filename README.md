@@ -77,13 +77,21 @@ The tests, despite being  exhaustive, try to show how the application can be tes
 using @WebMvcTest(), while the services are mocked. The services are tested, while repositories are mocked. And finally
 repositories are tested using H2.
 
-## How to run the project
+## How to build and run the project
+The project uses JDK 8. 
 You can build the project using gradle:
 ```
 ./gradlew clean build
 ```
 Application will be deployed at default port 8080. You can start it from Intellij or other IDE.
-
+Alternatively, you can deploy outside of IDE using this command:
+```
+java -jar takehome-0.0.1-SNAPSHOT.jar
+```
+takehome-0.0.1-SNAPSHOT.jar can be found in 
+```
+build/libs/takehome-0.0.1-SNAPSHOT.jar
+```
 ## Using Swagger to test REST services
 I included Swagger UI for ease of testing. After deployment, you can access it at
 ```
