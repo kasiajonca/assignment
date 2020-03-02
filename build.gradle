@@ -1,0 +1,41 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.asignment'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.projectlombok:lombok'
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	compile 'io.springfox.ui:springfox-swagger-ui-rfc6570:1.0.0'
+	compile group: 'io.springfox', name: 'springfox-bean-validators', version: '2.9.2'
+	testCompile('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.0.0'
+	implementation 'junit:junit:4.12'
+}
+
+test {
+	useJUnitPlatform()
+}
