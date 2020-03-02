@@ -65,29 +65,33 @@ can be modified when a new country and/or language is added. There is no way to 
 supported languages in Java, so this has to be done manually. 
 The code could be extended to use Accept-Language header and map it to Java Locale class.
 
-##Testing and documentation
-#### Unit tests
+### Error handling
+I made an effort to make exceptions more readable and informative for api consumers. 
+Error handling was done using @ExceptionHandler, @ControllerAdvice and ApiError class to have a central
+point for treating exceptions and wrapping them in a nice format.
+
+## Testing and documentation
 I created some example test. However, ran out of time to do full coverage. Note that test coverage tool is not
 included but normally it would be.
 The tests, despite being  exhaustive, try to show how the application can be tested. The controllers are tested
 using @WebMvcTest(), while the services are mocked. The services are tested, while repositories are mocked. And finally
 repositories are tested using H2.
 
-#### How to run the project
+## How to run the project
 You can build the project using gradle:
 ```
 ./gradlew clean build
 ```
 Application will be deployed at default port 8080. You can start it from Intellij or other IDE.
 
-#### Using Swagger to test REST services
+## Using Swagger to test REST services
 I included Swagger UI for ease of testing. After deployment, you can access it at
 ```
 http://<server-name>:8080/swagger-ui.html
 ```
 It will allow testing all the endpoints.
 
-##Final comments
+## Final comments
 I ran out of time. For me, it was hard to create a project according to the description in a given 1-3 hours.
 Perhaps my interpretation of the assignment was not correct. It would have been nice to have a better stated 
 business case. However, I hope that this demonstrates my ability to write rest services.

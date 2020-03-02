@@ -37,7 +37,6 @@ public class ProjectConfig extends WebMvcConfigurationSupport {
                 .version("2.8.0")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
-//                .contact(new Contact("Kasia Jonca", "https://kasiajonca/about/", "kasia.jonca@nike.com"))
                 .build();
     }
 
